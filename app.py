@@ -56,19 +56,19 @@ def display_value(continuous_var):
     x=results.loc['Cherbourg'].index,
     y=results.loc['Cherbourg'][continuous_var],
     name='Cherbourg',
-    marker=dict(color='darkgreen')
+    marker=dict(color='darkblue')
     )
     mydata2 = go.Bar(
     x=results.loc['Queenstown'].index,
     y=results.loc['Queenstown'][continuous_var],
     name='Queenstown',
-    marker=dict(color='lightblue')
+    marker=dict(color='lightred')
     )
     mydata3 = go.Bar(
     x=results.loc['Southampton'].index,
     y=results.loc['Southampton'][continuous_var],
     name='Southampton',
-    marker=dict(color='orange')
+    marker=dict(color='darkorange')
     )
 
     mylayout = go.Layout(
