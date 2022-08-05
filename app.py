@@ -68,7 +68,7 @@ def display_value(continuous_var):
     x=results.loc['Southampton'].index,
     y=results.loc['Southampton'][continuous_var],
     name='Southampton',
-    marker=dict(color='darkorange')
+    marker=dict(color='orange')
     )
 
     mylayout = go.Layout(
