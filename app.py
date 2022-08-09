@@ -9,7 +9,7 @@ import plotly.graph_objs as go
 
 
 ###### Define your variables #####
-tabtitle = 'Titanic!'
+tabtitle = 'Video Games Sales'
 color1='#92A5E8'
 color2='#8E44AD'
 color3='#FFC300'
@@ -21,7 +21,7 @@ githublink = 'https://github.com/vkhvan/304-titanic-dropdown'
 df = pd.read_csv("https://github.com/vkhvan/304-titanic-dropdown/blob/main/data/vgsales.csv")
 ##df['Female']=df['Sex'].map({'male':0, 'female':1})
 ##df['Cabin Class'] = df['Pclass'].map({1:'first', 2: 'second', 3:'third'})
-df = df[(df_select.Year>2005.0) & (df_select.Year<2010.0) & ((df_select.Platform == 'Wii') | (df_select.Platform == 'PS2') | (df_select.Platform == 'X360'))]
+df = df[(df.Year>2005.0) & (df.Year<2010.0) & ((df.Platform == 'Wii') | (df.Platform == 'PS2') | (df.Platform == 'X360'))]
 variables_list=['NA_Sales', 'EU_Sales', 'JP_Sales', 'Global_Sales']
 
 ########### Initiate the app
