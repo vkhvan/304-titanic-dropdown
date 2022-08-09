@@ -18,7 +18,7 @@ githublink = 'https://github.com/vkhvan/304-titanic-dropdown'
 
 
 ###### Import a dataframe #######
-df = pd.read_csv("https://github.com/vkhvan/304-titanic-dropdown/blob/main/data/vgsales.csv", error_bad_lines=False)
+df = pd.read_csv("data/vgsales.csv", on_bad_lines='skip')
 df = df[(df.Year>2005.0) & (df.Year<2010.0) & ((df.Platform == 'Wii') | (df.Platform == 'PS2') | (df.Platform == 'X360'))]
 variables_list=['NA_Sales', 'EU_Sales', 'JP_Sales', 'Global_Sales']
 
