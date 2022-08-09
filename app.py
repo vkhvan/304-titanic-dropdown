@@ -13,15 +13,16 @@ tabtitle = 'Titanic!'
 color1='#92A5E8'
 color2='#8E44AD'
 color3='#FFC300'
-sourceurl = 'https://www.kaggle.com/c/titanic'
-githublink = 'https://github.com/plotly-dash-apps/304-titanic-dropdown'
+sourceurl = 'https://www.kaggle.com/datasets/gregorut/videogamesales'
+githublink = 'https://github.com/vkhvan/304-titanic-dropdown'
 
 
 ###### Import a dataframe #######
-df = pd.read_csv("https://raw.githubusercontent.com/austinlasseter/plotly_dash_tutorial/master/00%20resources/titanic.csv")
-df['Female']=df['Sex'].map({'male':0, 'female':1})
-df['Cabin Class'] = df['Pclass'].map({1:'first', 2: 'second', 3:'third'})
-variables_list=['Survived', 'Female', 'Fare', 'Age']
+df = pd.read_csv("https://github.com/vkhvan/304-titanic-dropdown/blob/main/data/vgsales.csv")
+##df['Female']=df['Sex'].map({'male':0, 'female':1})
+##df['Cabin Class'] = df['Pclass'].map({1:'first', 2: 'second', 3:'third'})
+df = df[(df_select.Year>2005.0) & (df_select.Year<2010.0) & ((df_select.Platform == 'Wii') | (df_select.Platform == 'PS2') | (df_select.Platform == 'X360'))]
+variables_list=['NA_Sales', 'EU_Sales', 'JP_Sales', 'Global_Sales']
 
 ########### Initiate the app
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
@@ -49,32 +50,32 @@ app.layout = html.Div([
 @app.callback(Output('display-value', 'figure'),
               [Input('dropdown', 'value')])
 def display_value(continuous_var):
-    grouped_mean=df.groupby(['Embarked', 'Cabin Class'])[continuous_var].mean()
+    grouped_sum=df.groupby(['Platform', 'Year'])[continuous_var].sum()
     results=pd.DataFrame(grouped_mean)
     
     # Create a grouped bar chart
     mydata1 = go.Bar(
-    x=results.loc['Cherbourg'].index,
-    y=results.loc['Cherbourg'][continuous_var],
-    name='Cherbourg',
+    x=results.loc['PS2'].index,
+    y=results.loc['PS2'][continuous_var],
+    name='PS2',
     marker=dict(color='darkgreen')
     )
     mydata2 = go.Bar(
-    x=results.loc['Queenstown'].index,
-    y=results.loc['Queenstown'][continuous_var],
-    name='Queenstown',
+    x=results.loc['X360'].index,
+    y=results.loc['X360'][continuous_var],
+    name='X360',
     marker=dict(color='lightblue')
     )
     mydata3 = go.Bar(
-    x=results.loc['Southampton'].index,
-    y=results.loc['Southampton'][continuous_var],
-    name='Southampton',
+    x=results.loc['Wii'].index,
+    y=results.loc['Wii'][continuous_var],
+    name='Wii',
     marker=dict(color='orange')
     )
 
     mylayout = go.Layout(
     title='Grouped bar chart',
-    xaxis = dict(title = 'Cabin Class'), # x-axis label
+    xaxis = dict(title = 'Year'), # x-axis label
     yaxis = dict(title = str(continuous_var)), # y-axis label
 
     )
