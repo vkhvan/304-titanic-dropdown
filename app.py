@@ -51,7 +51,7 @@ app.layout = html.Div([
               [Input('dropdown', 'value')])
 def display_value(continuous_var):
     grouped_sum=df.groupby(['Platform', 'Year'])[continuous_var].sum()
-    results=pd.DataFrame(grouped_mean)
+    results=pd.DataFrame(grouped_sum)
     
     # Create a grouped bar chart
     mydata1 = go.Bar(
