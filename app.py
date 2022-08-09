@@ -51,6 +51,7 @@ app.layout = html.Div([
 def display_value(continuous_var):
     grouped_mean=df.groupby(['Embarked', 'Cabin Class'])[continuous_var].mean()
     results=pd.DataFrame(grouped_mean)
+    
     # Create a grouped bar chart
     mydata1 = go.Bar(
     x=results.loc['Cherbourg'].index,
